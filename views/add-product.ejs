@@ -1,0 +1,44 @@
+<%-include('includes/head.ejs')%>
+    <link rel="stylesheet" href="/css/style.css">
+    
+</head>
+<body>
+    <!-- <header class="main_header">
+        <nav class="main_header__nav">
+            <ul class="main_header__item-list">
+                <li class="main_header__item"><a href="/">Shop</a></li>
+                <li  class="main_header__item"><a href="/admin/add-product">Add Product</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    <%-include('includes/navigation.ejs')%>
+    <!-- <header>
+        <nav>
+            <ul>
+            <li><a href="/">shop</a></li>
+            <li><a href="/admin/add-product">Add product</a></li>
+            </ul>
+        </nav>
+    </header> -->
+    <main>
+        <form action="/admin/product" method="post" class="product-form">
+            <div class="form-control">
+                <label for="productName">Product Name</label>
+                <input type="text" name = "productName">
+               </div>
+               <div class="form-control">
+                <label for="imgUrl">Product Image</label>
+                <input type="text" name = "imgUrl">
+               </div>
+               <div class="form-control">
+                <label for="price">Product price</label>
+                <input type="text" name = "price">
+               </div>
+               <div class="form-control">
+                <label for="description">Product description</label>
+                <textarea name="description" rows="5"></textarea>
+               </div>
+            <button class="btn" type="submit">Add Product</button>
+        </form>
+
+        <%-include('includes/end.ejs')%>
