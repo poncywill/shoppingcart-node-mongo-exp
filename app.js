@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require("body-parser")
 const app = express()
 const rootDir = require('./utils/path')
-const MongoConnect=require('./models/database')
+const MongoConnect=require('./models/database').MongoConnect
 const path = require('path')
 const adminRoutes = require('./routes/admin')
 const shopRoutes = require('./routes/shop')
@@ -18,7 +18,7 @@ app.use(shopRoutes)
 app.use(errorController.get404)
 
 MongoConnect(client=>{
-    console.log(client)
+    //console.log(client)
     app.listen(3000,()=>{console.log('server is running port 3000')})
 
 })

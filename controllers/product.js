@@ -10,17 +10,25 @@ exports.postAddProduct=(req,res)=>{
     const description=req.body.description
 
     const product=new Product(productName,imgUrl,price,description)
-    product.save()
+    product.save().then(()=>{
+        console.log('products inserted successfully')
+    })
     
     res.redirect('/')
 }
 exports.getProducts=(req,res,next)=>{
-    const products=Product.fetchAll()
-    console.log('get products',products);
+
+    Product.fetchAll()
+    .then(products=>{
+        res.render('shop',{products:products,pageTitle:"Shop"})
+
+    })
+
+    //console.log('get products',products);
     
   
     
-    res.render('shop',{products:products,pageTitle:"Shop"})
+    
     
   
   }

@@ -1,13 +1,23 @@
-const mongodb=require('mongodb')
-const MongoClient =mongodb.MongoClient
+const mongodb = require('mongodb')
+const MongoClient = mongodb.MongoClient
 
-MongoConnect=(callback)=>{
+
+let _db;
+MongoConnect = (callback) => {
 
     MongoClient.connect("mongodb+srv://poncy:expertz12345@cluster0.sbeeafp.mongodb.net/cart?retryWrites=true&w=majority")
-.then(client=>{
-    console.log("Database connected")
-    callback(client)
-}).catch(err=>console.log(err))
+        .then(client => {
+            console.log("Database connected")
+            _db = client.db()
+            callback()
+        }).catch(err => console.log(err))
+}
+const getDb = () => {
+    if (_db) {
+        return _db
+    }
+    throw 'no database found'
 }
 
-module.exports=MongoConnect;
+exports.MongoConnect = MongoConnect;
+exports.getDb = getDb
