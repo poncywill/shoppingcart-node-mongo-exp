@@ -24,11 +24,15 @@ exports.getProducts=(req,res,next)=>{
 
     })
 
-    //console.log('get products',products);
-    
-  
-    
-    
-    
-  
-  }
+    }
+
+    exports.getProduct=(req,res)=>{
+        const prodId=req.params.id 
+
+
+        Product.findById(prodId)
+        .then(product=>{
+            res.render('product_details',{pageTitle:product.productName,
+            product:product})
+        })
+    }
